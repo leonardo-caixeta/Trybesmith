@@ -15,7 +15,6 @@ Promise<ServiceResponse<Omit<Product, 'orderId'>>> {
   if (error) return error;
 
   const created = await ProductModel.create({ name, price, orderId });
-
   const { orderId: idOrder, ...product } = created.dataValues;
 
   return { status: HTTPStatus.CREATED, data: product };
@@ -23,7 +22,6 @@ Promise<ServiceResponse<Omit<Product, 'orderId'>>> {
 
 async function getAll(): Promise<ServiceResponseSuccess<Product[]>> {
   const allProducts = await ProductModel.findAll();
-
   const allProductsParsed = allProducts.map(({ dataValues }) => dataValues);
 
   return { status: HTTPStatus.SUCCESSFUL, data: allProductsParsed };
