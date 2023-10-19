@@ -8,7 +8,7 @@ import { HTTPStatus } from '../utils/mapStatusHTTP';
 import productSchema from './schemas/product.schema';
 import schemaValidation from './validations/schema.validation';
 
-async function create({ name, price, orderId }:ProductInputtableTypes):
+async function create({ name, price, orderId }: ProductInputtableTypes):
 Promise<ServiceResponse<Omit<Product, 'orderId'>>> {
   const error = schemaValidation
     .validateSchema(productSchema.validProduct, { name, price, orderId });
